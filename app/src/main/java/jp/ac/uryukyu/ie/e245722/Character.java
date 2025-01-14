@@ -8,7 +8,7 @@ public abstract class Character {
     private int ChrageCount ;
     private int Life ;
 
-    //コマンド
+    //アクション
     ArrayList<Action> actions = new ArrayList<>();
 
     Character(String Name , int Life ){
@@ -25,7 +25,7 @@ public abstract class Character {
 
     //現在の状況を書き出し
     void showStatus() {
-        System.out.printf("%s:charge %d  \n", getName(), getChrageCount());
+        System.out.printf("%s:charge %d ,Life:%d\n", getName(), getChrageCount() , getLife());
     }
     
 
@@ -42,7 +42,7 @@ public abstract class Character {
         System.out.println( (getLife() + 1) + "→" + getLife());
     }
 
-    abstract void act(ArrayList<Character> targets);
+    
 
     //getterメソッド
     public String getName(){ return Name; }
