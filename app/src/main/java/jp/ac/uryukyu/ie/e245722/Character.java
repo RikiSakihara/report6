@@ -48,4 +48,5 @@ public abstract class Character {
     public String getName(){ return Name; }
     public int getChrageCount() { return ChrageCount; }
     public int getLife() {return Life; }
+    public ArrayList<Action> getAction(){return actions;}
 }

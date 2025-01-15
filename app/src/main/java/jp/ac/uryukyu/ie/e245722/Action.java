@@ -21,12 +21,8 @@ public class Action {
         
     }
 
-    //行動結果
-    void act(Character performer , Character targets , Action Action) {
-        performer.Chrage(getCost());
-        if (performer.getChrageCount() > getCost()){
-            targets.LifeDecrease(getDamage());
-        }
+    //行動
+    void act(Character performer , Character targets){
     
     }
 
