@@ -11,7 +11,7 @@ public class Player extends Character {
         actions.add(new Action("バリア" , 0 , 1 ,0));
         actions.add(new Action("チャージ", 1, 0, 0));
         actions.add(new Action("かめはめ波", -2, 0, 1));
-        actions.add(new Action("元気玉", -5, 1, 1));
+        actions.add(new Action("元気玉", -5, 0, 2));
 
     }
 
@@ -30,11 +30,10 @@ public class Player extends Character {
         for(var target: targets) {
             command_selector.addCommand(target.getName());
         }
-        var target_number = command_selector.waitForUsersCommand("ターゲット？");
-
+        
         //これがスキャンしている
-        getAction().get(command_number).act(this, targets.get(target_number));
-        //           ^ユーザが選択したアクション番号                 ^選択したターゲット番号
+        getAction().get(command_number).act(this);
+        //           ^ユーザが選択したアクション番号
     }
 
     
