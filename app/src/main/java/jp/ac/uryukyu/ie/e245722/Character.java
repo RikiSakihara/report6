@@ -11,7 +11,7 @@ public abstract class Character {
     private int AttackScore;
 
     //アクション
-    ArrayList<Action> actions = new ArrayList<>();
+    private ArrayList<Action> actions = new ArrayList<>();
 
     Character(String Name , int Life ){
         this.Name = Name;
@@ -19,7 +19,6 @@ public abstract class Character {
         this.ChrageCount = 0;
         this.BarrierScore = 0;
         this.AttackScore = 0;
-
     }
 
     //できるアクションのリスト
@@ -30,23 +29,31 @@ public abstract class Character {
 
     //現在の状況を書き出し
     void showStatus() {
-        System.out.printf("%s:charge %d ,Life:%d\n", getName(), getChrageCount() , getLife());
+        System.out.printf("%s:charge %d , Life: %d\n", getName(), getChrageCount() , getLife());
     }
 
     //攻撃＆防御
-    void isAttackBarrier( Character Enemy){
-
-        if(getAttackScore() > Enemy.getBarrierScore() ){
+    void isAttackBarrier( Character Enemy , boolean judge){
+        if( judge == true && getAttackScore() > Enemy.getBarrierScore() ){
+            System.out.println("攻撃成功！");
             Enemy.LifeDecrease(1);
-        }else if(getAttackScore() > 0){
-            System.out.printf("%sの攻撃は失敗..." , getName());
+        }else if(judge ==true && getAttackScore() > 0){
+            System.out.printf("%sの攻撃は防がれた...\n" , getName());
+        }else if(judge == false && getAttackScore() > 0){
+            System.out.println("chargeが足りない...");
         }else{
         }
     }
     
-    //生存確認
-    boolean isAlive(){
-        if (getLife() == 0 ){
+    
+    //生存確認(美しくないなぁ)
+    boolean isAlive(Character Enemy){
+        if (getLife() == 0 || Enemy.getLife() == 0){
+            if(getLife() == 0){
+                System.out.println("ゲームオーバー");
+            }else{
+                System.out.printf("%sの勝ち!" , getName());
+            }
             return false;
         }else{
             return true;
@@ -56,9 +63,12 @@ public abstract class Character {
 
     //Chargeする
     public void Chrage(int Chrage){
-        ChrageCount += Chrage;
+        if(ChrageCount + Chrage >= 0){
+            ChrageCount += Chrage;
+        }else{
+        }
+        ;
     }
-
 
     //Life減少
     public void LifeDecrease(int damage){
@@ -68,8 +78,9 @@ public abstract class Character {
 
     //バリア 加算＆初期化
     public void addBarrierScore(int CanBarrier){
-        if (CanBarrier == 0){
+        if (BarrierScore > 0){
             BarrierScore = 0;
+            BarrierScore += CanBarrier;
         }else{
             BarrierScore += CanBarrier;
         }
@@ -77,15 +88,16 @@ public abstract class Character {
 
     //攻撃　加算＆初期化
     public void addAttackScore(int Score){
-        if (Score == 0){
+        if (AttackScore > 0){
             AttackScore =0;
+            AttackScore += Score;
         }else{
             AttackScore += Score;
         }
     }
 
     //それぞれの行動を描く(サブクラスだよ)
-    abstract void act(Character target);
+    abstract boolean trurnaction(Character target);
 
     //getterメソッド
     public String getName(){ return Name; }

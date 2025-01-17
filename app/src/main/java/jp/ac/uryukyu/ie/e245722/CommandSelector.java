@@ -12,6 +12,7 @@ public class CommandSelector {
         commands = new ArrayList<>();
     }
 
+    //コマンド追加
     void addCommand(String command_name) {
         getCommands().add(command_name);
     }

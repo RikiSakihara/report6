@@ -4,6 +4,8 @@ package jp.ac.uryukyu.ie.e245722;
 public class GameMaster {
     
     public static void main(String[] args) {  //Main
+
+        int i = 0;
         Player Player = new Player("RIki", 3);
         Enemy Enemy = new Enemy("kio", 3);
 
@@ -12,17 +14,25 @@ public class GameMaster {
 
         System.out.println("バトル開始!!");
 
-        for  (int i = 0 ; i < 5 ; i++) {
-            System.out.printf("%dターン目\n",i+1);
-            
-            Player.act(Enemy);
-            Enemy.act(Player);
+        
+        while ( Player.isAlive(Enemy) == true ) {
 
-            Player.isAttackBarrier(Enemy);
-            Enemy.isAttackBarrier(Player);
+            System.out.printf("\n%dターン目\n",i+1);
+            i += 1;
+            
+            boolean x = Player.trurnaction(Player);
+            boolean y = Enemy.trurnaction(Enemy);
+
+            Player.isAttackBarrier(Enemy , x);
+            Enemy.isAttackBarrier(Player , y);
 
             Player.showStatus();
             Enemy.showStatus();
+
+            System.out.println("---------------\n");//ターミナル上を見やすくしているだけ
+
+            System.out.println(Player.getAttackScore()); 
+            System.out.println(Enemy.getBarrierScore());
         }
     } 
 }

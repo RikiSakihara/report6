@@ -5,7 +5,7 @@ public class Action {
     private String name;
     private int Cost;
     private int BarrierScore;
-    private int AttackScore; //AttackScore > CanBarrier　なら攻撃通るs
+    private int AttackScore; //AttackScore > CanBarrier　なら攻撃通る
 
     //技設定
     Action(String name , int Cost , int BarrierScore , int AttackScore){
@@ -21,6 +21,15 @@ public class Action {
         performer.Chrage(getCost());
         performer.addBarrierScore(getBarrierScore());
         performer.addAttackScore(getAttackScore());
+    }
+
+    //攻撃できるかどうか
+    boolean canAttack(Character performer){
+        if (performer.getChrageCount() + getCost() >= 0){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     public String getName(){ return name; }

@@ -8,18 +8,25 @@ public class Enemy extends Character{
         super(name , Life);
         
         //アクションは固定
-        actions.add(new Action("バリア"  , 0 , 1  ,0));
-        actions.add(new Action("チャージ" , 1, 0, 0));
-        actions.add(new Action("かめはめ波" , (-2), 0, 1));
-        actions.add(new Action("元気玉", (-5), 0, 2));
+        getAction().add(new Action("バリア" , 0 , 1 ,0));
+        getAction().add(new Action("チャージ", 1, 0, 0));
+        getAction().add(new Action("かめはめ波", -2, 0, 1));
+        getAction().add(new Action("元気玉", -5, 0, 2));
     }
 
-    void act(Character targets) {
+    boolean trurnaction(Character performer) {
+        /* 
         if (getChrageCount() > 2){
-            getAction().get(2).act(this);
+            getAction().get(2).act(performer);
         }else{
-            getAction().get(1).act(this);
+            getAction().get(1).act(performer);
         }
+        */
+
+        boolean judge = getAction().get(0).canAttack(performer);
+        getAction().get(0).act(performer);
+        
+        return judge;
     }
  
 }
