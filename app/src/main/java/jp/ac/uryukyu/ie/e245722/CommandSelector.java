@@ -17,6 +17,7 @@ public class CommandSelector {
         getCommands().add(command_name);
     }
 
+    //コマンド初期化
     void clearCommands() {
         getCommands().clear();
     }

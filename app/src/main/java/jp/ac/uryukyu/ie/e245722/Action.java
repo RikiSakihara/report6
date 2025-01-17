@@ -1,6 +1,5 @@
 package jp.ac.uryukyu.ie.e245722;
 
-//これは一旦OK
 public class Action {
     private String name;
     private int Cost;

@@ -3,6 +3,21 @@ package jp.ac.uryukyu.ie.e245722;
 
 public class GameMaster {
     
+    //生存確認
+    static boolean isAlive(Character performer , Character target){
+        if (performer.getLife() == 0 || target.getLife() == 0){
+            if(performer.getLife() == 0){
+                System.out.println("ゲームオーバー");
+            }else{
+                System.out.printf("%sの勝ち!" , performer.getName());
+            }
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    
     public static void main(String[] args) {  //Main
 
         int i = 0;
@@ -15,7 +30,7 @@ public class GameMaster {
         System.out.println("バトル開始!!");
 
         
-        while ( Player.isAlive(Enemy) == true ) {
+        while ( isAlive(Player, Enemy) == true ) {
 
             System.out.printf("\n%dターン目\n",i+1);
             i += 1;

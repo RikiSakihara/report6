@@ -44,22 +44,6 @@ public abstract class Character {
         }else{
         }
     }
-    
-    
-    //生存確認(美しくないなぁ)
-    boolean isAlive(Character Enemy){
-        if (getLife() == 0 || Enemy.getLife() == 0){
-            if(getLife() == 0){
-                System.out.println("ゲームオーバー");
-            }else{
-                System.out.printf("%sの勝ち!" , getName());
-            }
-            return false;
-        }else{
-            return true;
-        }
-    }
-    
 
     //Chargeする
     public void Chrage(int Chrage){
@@ -96,7 +80,7 @@ public abstract class Character {
         }
     }
 
-    //それぞれの行動を描く(サブクラスだよ)
+    //それぞれの行動を描く
     abstract boolean trurnaction(Character target);
 
     //getterメソッド
