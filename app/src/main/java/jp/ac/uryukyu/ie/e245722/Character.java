@@ -7,7 +7,7 @@ public abstract class Character {
     private String Name;
     private int ChrageCount ;
     private int Life ;
-    private int Barrier;
+    private int BarrierScore;
     private int AttackScore;
 
     //アクション
@@ -17,7 +17,7 @@ public abstract class Character {
         this.Name = Name;
         this.Life = Life;
         this.ChrageCount = 0;
-        this.Barrier = 0;
+        this.BarrierScore = 0;
         this.AttackScore = 0;
 
     }
@@ -33,6 +33,18 @@ public abstract class Character {
         System.out.printf("%s:charge %d ,Life:%d\n", getName(), getChrageCount() , getLife());
     }
 
+    //攻撃＆防御
+    void isAttackBarrier( Character Enemy){
+
+        if(getAttackScore() > Enemy.getBarrierScore() ){
+            Enemy.LifeDecrease(1);
+        }else if(getAttackScore() > 0){
+            System.out.printf("%sの攻撃は失敗..." , getName());
+        }else{
+        }
+    }
+    
+    //生存確認
     boolean isAlive(){
         if (getLife() == 0 ){
             return false;
@@ -45,22 +57,21 @@ public abstract class Character {
     //Chargeする
     public void Chrage(int Chrage){
         ChrageCount += Chrage;
-        System.out.println("Charge数 :" + ChrageCount);
     }
 
 
     //Life減少
     public void LifeDecrease(int damage){
         Life -= damage;
-        System.out.println( (getLife() + 1) + "→" + getLife());
+        System.out.printf( "%sのLife:" +(getLife() + 1) + "→" + getLife() + "\n", getName());
     }
 
     //バリア 加算＆初期化
-    public void addBarrierCount(int CanBarrier){
+    public void addBarrierScore(int CanBarrier){
         if (CanBarrier == 0){
-            Barrier = 0;
+            BarrierScore = 0;
         }else{
-            Barrier += CanBarrier;
+            BarrierScore += CanBarrier;
         }
     }
 
@@ -73,14 +84,14 @@ public abstract class Character {
         }
     }
 
-    
-    abstract void act(ArrayList<Character> targets); //サブクラスで定義する
+    //それぞれの行動を描く(サブクラスだよ)
+    abstract void act(Character target);
 
     //getterメソッド
     public String getName(){ return Name; }
     public int getChrageCount() { return ChrageCount; }
     public int getLife() {return Life; }
     public ArrayList<Action> getAction(){return actions;}
-    public int getBarrier() {return Barrier;}
+    public int getBarrierScore() {return BarrierScore;}
     public int getAttackScore() {return AttackScore;}
 }

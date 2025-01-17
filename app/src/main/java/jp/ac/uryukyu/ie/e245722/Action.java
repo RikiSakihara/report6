@@ -15,18 +15,14 @@ public class Action {
         this.AttackScore = AttackScore;
     }
 
-    //自分のターンで行ったこと(print)
-    public void turn(Character perfomer , Character target){
-        System.out.println(perfomer.getName() + ":" + getName() );
-        
-    }
-
     //行動(一旦行動を整理)
     void act(Character performer){
-        performer.addBarrierCount(getBarrierScore());
+        System.out.printf("%sの行動:%s\n" , performer.getName() , getName());
+        performer.Chrage(getCost());
+        performer.addBarrierScore(getBarrierScore());
         performer.addAttackScore(getAttackScore());
     }
-
+    
     public String getName(){ return name; }
     public int getCost() {return Cost; }
     public int getBarrierScore(){ return BarrierScore; }
