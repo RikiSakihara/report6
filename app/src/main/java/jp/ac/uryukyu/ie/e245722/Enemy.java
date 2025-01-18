@@ -23,8 +23,8 @@ public class Enemy extends Character{
         }
         */
 
-        boolean judge = getAction().get(0).canAttack(performer);
-        getAction().get(0).act(performer);
+        boolean judge = getAction().get(2).canAttack(performer);
+        getAction().get(2).act(performer);
         
         return judge;
     }

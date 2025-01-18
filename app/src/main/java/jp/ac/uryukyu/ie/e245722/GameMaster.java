@@ -17,8 +17,8 @@ public class GameMaster {
         }
     }
 
-    
-    public static void main(String[] args) {  //Main
+
+    public static void main(String[] args) {
 
         int i = 0;
         Player Player = new Player("RIki", 3);
@@ -45,9 +45,6 @@ public class GameMaster {
             Enemy.showStatus();
 
             System.out.println("---------------\n");//ターミナル上を見やすくしているだけ
-
-            System.out.println(Player.getAttackScore()); 
-            System.out.println(Enemy.getBarrierScore());
         }
     } 
 }

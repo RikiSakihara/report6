@@ -24,7 +24,7 @@ public class Action {
 
     //攻撃できるかどうか
     boolean canAttack(Character performer){
-        if (performer.getChrageCount() + getCost() >= 0){
+        if (performer.getChargeCount() + getCost() >= 0){
             return true;
         }else{
             return false;

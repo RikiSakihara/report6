@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class Character {
 
     private String Name;
-    private int ChrageCount ;
+    private int ChargeCount ;
     private int Life ;
     private int BarrierScore;
     private int AttackScore;
@@ -16,7 +16,7 @@ public abstract class Character {
     Character(String Name , int Life ){
         this.Name = Name;
         this.Life = Life;
-        this.ChrageCount = 0;
+        this.ChargeCount = 0;
         this.BarrierScore = 0;
         this.AttackScore = 0;
     }
@@ -29,26 +29,28 @@ public abstract class Character {
 
     //現在の状況を書き出し
     void showStatus() {
-        System.out.printf("%s:charge %d , Life: %d\n", getName(), getChrageCount() , getLife());
+        System.out.printf("%s:charge %d , Life: %d\n", getName(), getChargeCount() , getLife());
     }
 
     //攻撃＆防御
     void isAttackBarrier( Character Enemy , boolean judge){
-        if( judge == true && getAttackScore() > Enemy.getBarrierScore() ){
-            System.out.println("攻撃成功！");
+        if( judge == true && getAttackScore() > Enemy.getBarrierScore() && getAttackScore() > Enemy.getAttackScore()){
+            System.out.printf("%s:攻撃成功！\n" , getName());
             Enemy.LifeDecrease(1);
-        }else if(judge ==true && getAttackScore() > 0){
+        }else if(judge == true && getAttackScore() > 0 && Enemy.getAttackScore() == 0|| judge == true && getAttackScore() > 0 && getAttackScore() == Enemy.getAttackScore()){
             System.out.printf("%sの攻撃は防がれた...\n" , getName());
+        }else if(judge == true && getAttackScore() > 0 && getAttackScore() < Enemy.getAttackScore()){
+            System.out.printf("%s:攻撃失敗...\n" , getName());
         }else if(judge == false && getAttackScore() > 0){
-            System.out.println("chargeが足りない...");
+            System.out.printf("%s:chargeが足りない...\n", getName());
         }else{
         }
     }
 
     //Chargeする
     public void Chrage(int Chrage){
-        if(ChrageCount + Chrage >= 0){
-            ChrageCount += Chrage;
+        if(ChargeCount + Chrage >= 0){
+            ChargeCount += Chrage;
         }else{
         }
         ;
@@ -85,7 +87,7 @@ public abstract class Character {
 
     //getterメソッド
     public String getName(){ return Name; }
-    public int getChrageCount() { return ChrageCount; }
+    public int getChargeCount() { return ChargeCount; }
     public int getLife() {return Life; }
     public ArrayList<Action> getAction(){return actions;}
     public int getBarrierScore() {return BarrierScore;}
