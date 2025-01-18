@@ -15,9 +15,9 @@ public class Action {
     }
 
     //行動(一旦行動を整理)
-    void act(Character performer){
+    public void act(Character performer){
         System.out.printf("%sの行動:%s\n" , performer.getName() , getName());
-        performer.Chrage(getCost());
+        performer.Charge(getCost());
         performer.addBarrierScore(getBarrierScore());
         performer.addAttackScore(getAttackScore());
     }

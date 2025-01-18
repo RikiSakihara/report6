@@ -48,9 +48,9 @@ public abstract class Character {
     }
 
     //Chargeする
-    public void Chrage(int Chrage){
-        if(ChargeCount + Chrage >= 0){
-            ChargeCount += Chrage;
+    public void Charge(int Charge){
+        if(ChargeCount + Charge >= 0){
+            ChargeCount += Charge;
         }else{
         }
         ;
