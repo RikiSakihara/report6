@@ -1,10 +1,8 @@
 package jp.ac.uryukyu.ie.e245722;
 
-//import java.util.ArrayList;
-
 public class Player extends Character {
     
-    Player(String Name, int Life){
+    public Player(String Name, int Life){
         super( Name ,Life );
 
         //アクションは固定
@@ -15,7 +13,7 @@ public class Player extends Character {
 
     }
 
-    boolean trurnaction(Character performer) {
+    public boolean trurnaction(Character performer) {
         var command_selector = new CommandSelector();
         
        //選択肢を用意する
@@ -26,13 +24,23 @@ public class Player extends Character {
        //ユーザの選択を待つ
         var command_number = command_selector.waitForUsersCommand("コマンド？");
 
-        System.out.println("---------------");//ターミナル上で見やすくしている
+        System.out.println("---------------");
 
         boolean judge = getAction().get(command_number).canAttack(performer);
         getAction().get(command_number).act(performer);
         
         return judge;
         
+    }
+
+    //生死判別
+    public boolean isAlive(){
+        if (getLife() > 0){
+            return true;
+        }else{
+            System.out.println("ゲームオーバー...");
+            return false;
+        }
     }
 
 }

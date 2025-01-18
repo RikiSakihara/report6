@@ -28,20 +28,20 @@ public abstract class Character {
 
 
     //現在の状況を書き出し
-    void showStatus() {
+    public void showStatus() {
         System.out.printf("%s:charge %d , Life: %d\n", getName(), getChargeCount() , getLife());
     }
 
     //攻撃＆防御
-    void isAttackBarrier( Character Enemy , boolean judge){
-        if( judge == true && getAttackScore() > Enemy.getBarrierScore() && getAttackScore() > Enemy.getAttackScore()){
+    public void isAttackBarrier( Character Enemy , boolean Playerjudge , boolean Enemyjudge){
+        if( Playerjudge == true && getAttackScore() > Enemy.getBarrierScore() && getAttackScore() > Enemy.getAttackScore() || Playerjudge ==true && Enemyjudge ==false && getAttackScore() > 0){
             System.out.printf("%s:攻撃成功！\n" , getName());
             Enemy.LifeDecrease(1);
-        }else if(judge == true && getAttackScore() > 0 && Enemy.getAttackScore() == 0|| judge == true && getAttackScore() > 0 && getAttackScore() == Enemy.getAttackScore()){
+        }else if(Playerjudge == true && getAttackScore() > 0 && Enemy.getAttackScore() == 0 || Playerjudge == true && getAttackScore() > 0 && getAttackScore() == Enemy.getAttackScore()){
             System.out.printf("%sの攻撃は防がれた...\n" , getName());
-        }else if(judge == true && getAttackScore() > 0 && getAttackScore() < Enemy.getAttackScore()){
+        }else if(Playerjudge == true && getAttackScore() > 0 && getAttackScore() < Enemy.getAttackScore()){
             System.out.printf("%s:攻撃失敗...\n" , getName());
-        }else if(judge == false && getAttackScore() > 0){
+        }else if(Playerjudge == false && getAttackScore() > 0){
             System.out.printf("%s:chargeが足りない...\n", getName());
         }else{
         }
@@ -83,7 +83,7 @@ public abstract class Character {
     }
 
     //それぞれの行動を描く
-    abstract boolean trurnaction(Character target);
+    public abstract boolean trurnaction(Character target);
 
     //getterメソッド
     public String getName(){ return Name; }

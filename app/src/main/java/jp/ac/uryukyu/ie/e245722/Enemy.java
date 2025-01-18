@@ -1,10 +1,8 @@
 package jp.ac.uryukyu.ie.e245722;
 
-//import java.util.ArrayList;
-//import java.util.Random;
-
 public class Enemy extends Character{
-    Enemy(String name, int Life) {
+    
+    public Enemy(String name, int Life) {
         super(name , Life);
         
         //アクションは固定
@@ -14,7 +12,7 @@ public class Enemy extends Character{
         getAction().add(new Action("元気玉", -5, 0, 2));
     }
 
-    boolean trurnaction(Character performer) {
+    public boolean trurnaction(Character performer) {
         /* 
         if (getChrageCount() > 2){
             getAction().get(2).act(performer);
@@ -28,5 +26,14 @@ public class Enemy extends Character{
         
         return judge;
     }
- 
+
+    //生死判別
+    public boolean isAlive(){
+        if (getLife() > 0){
+            return true;
+        }else{
+            System.out.println("君の勝ち!!");
+            return false;
+        }
+    }
 }
