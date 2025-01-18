@@ -13,18 +13,42 @@ public class Enemy extends Character{
     }
 
     public boolean trurnaction(Character performer) {
-        /* 
-        if (getChrageCount() > 2){
-            getAction().get(2).act(performer);
-        }else{
-            getAction().get(1).act(performer);
-        }
-        */
+        double probability = Math.random();
+        boolean judge;
 
-        boolean judge = getAction().get(2).canAttack(performer);
-        getAction().get(2).act(performer);
-        
+        if(getChargeCount() < 3){
+            if (probability < 0.85){
+                judge = JudgeAction(1, performer);
+            }else{
+                judge = JudgeAction(0, performer);
+            }    
+        }else if(getChargeCount() <5){
+            if (probability < 0.7){
+                judge = JudgeAction(2, performer);
+            }else if(probability < 0.9){
+                judge = JudgeAction(1, performer);
+            }else{
+                judge = JudgeAction(0, performer);
+            }
+        }else{
+            if (probability < 0.75){
+                judge = JudgeAction(3, performer);
+            }else if(probability < 0.9){
+                judge = JudgeAction(2, performer);
+            }else if(probability < 0.95){
+                judge = JudgeAction(1, performer);
+            }else{
+                judge = JudgeAction(0, performer);
+            }
+        }
         return judge;
+    }
+
+    //judge&Action
+    public boolean JudgeAction(int Action , Character performer){
+        boolean Judge = getAction().get(Action).canAttack(performer);
+        getAction().get(Action).act(performer);
+        return Judge;
     }
 
     //生死判別
