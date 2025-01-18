@@ -34,7 +34,7 @@ public abstract class Character {
 
     //攻撃＆防御
     public void isAttackBarrier( Character Enemy , boolean Playerjudge , boolean Enemyjudge){
-        if( Playerjudge == true && getAttackScore() > Enemy.getBarrierScore() && getAttackScore() > Enemy.getAttackScore() || Playerjudge ==true && Enemyjudge ==false && getAttackScore() > 0){
+        if( Playerjudge == true && getAttackScore() > Enemy.getBarrierScore() || Playerjudge == true  && getAttackScore() > Enemy.getAttackScore() || Playerjudge ==true && Enemyjudge ==false && getAttackScore() > 0){
             System.out.printf("%s:攻撃成功！\n" , getName());
             Enemy.LifeDecrease(1);
         }else if(Playerjudge == true && getAttackScore() > 0 && Enemy.getAttackScore() == 0 || Playerjudge == true && getAttackScore() > 0 && getAttackScore() == Enemy.getAttackScore()){
